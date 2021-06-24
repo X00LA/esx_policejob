@@ -18,10 +18,10 @@ INSERT INTO `jobs` (name, label) VALUES
 
 INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
 	('police',0,'recruit','Rekrut',20,'{}','{}'),
-	('police',1,'officer','Officier',40,'{}','{}'),
-	('police',2,'sergeant','Sergent',60,'{}','{}'),
-	('police',3,'lieutenant','Lieutenant',85,'{}','{}'),
-	('police',4,'boss','Commandant',100,'{}','{}')
+	('police',1,'officer','Streifenpolizist',40,'{}','{}'),
+	('police',2,'sergeant','Wachtmeister',60,'{}','{}'),
+	('police',3,'lieutenant','Kommissar',85,'{}','{}'),
+	('police',4,'boss','Polizeidirektor',100,'{}','{}')
 ;
 
 CREATE TABLE `fine_types` (
@@ -33,56 +33,74 @@ CREATE TABLE `fine_types` (
 	PRIMARY KEY (`id`)
 );
 
-INSERT INTO `fine_types` VALUES ('1', 'Missbrauchen der Hupe', '30', '0');
-INSERT INTO `fine_types` VALUES ('2', 'Vorfahrtstraße missachtet', '40', '0');
-INSERT INTO `fine_types` VALUES ('3', 'Gegenverkehr', '250', '0');
-INSERT INTO `fine_types` VALUES ('4', 'Unbefugtes Wenden', '250', '0');
-INSERT INTO `fine_types` VALUES ('5', 'Off-Road fahren', '170', '0');
-INSERT INTO `fine_types` VALUES ('6', 'Sicherheitsrichtlinien missachtet', '30', '0');
-INSERT INTO `fine_types` VALUES ('7', 'Gefährliches halten', '150', '0');
-INSERT INTO `fine_types` VALUES ('8', 'Nicht erlaubtes parken', '70', '0');
-INSERT INTO `fine_types` VALUES ('9', 'Nicht respektieren des Rechtsfahrgebotes', '70', '0');
-INSERT INTO `fine_types` VALUES ('10', 'Nicht einhaltender Priorität eines Rettungsfahrzeuges', '90', '0');
-INSERT INTO `fine_types` VALUES ('11', 'Nicht angehalten nach Aufforderung', '105', '0');
-INSERT INTO `fine_types` VALUES ('12', 'Bei Rot über die Ampel', '130', '0');
-INSERT INTO `fine_types` VALUES ('13', 'gefährliches Überholmanöver', '100', '0');
-INSERT INTO `fine_types` VALUES ('14', 'Fahrzeug nicht Verkehrstauglich', '100', '0');
-INSERT INTO `fine_types` VALUES ('15', 'Fahren ohne Lizenz', '1500', '0');
-INSERT INTO `fine_types` VALUES ('16', 'Hit and Run', '800', '0');
-INSERT INTO `fine_types` VALUES ('17', 'zu schnell < 5 kmh', '90', '0');
-INSERT INTO `fine_types` VALUES ('18', 'zu schnell 5-15 kmh', '120', '0');
-INSERT INTO `fine_types` VALUES ('19', 'zu schnell 15-30 kmh', '180', '0');
-INSERT INTO `fine_types` VALUES ('20', 'zu schnell > 30 kmh', '300', '0');
-INSERT INTO `fine_types` VALUES ('21', 'Verkehrsbehinderung', '110', '1');
-INSERT INTO `fine_types` VALUES ('22', 'Nicht Benutzung öffentlicher Straßen', '90', '1');
-INSERT INTO `fine_types` VALUES ('23', 'Störung der öffentlichen Ordnung', '90', '1');
-INSERT INTO `fine_types` VALUES ('24', 'Polizeieinsatz behindern', '130', '1');
-INSERT INTO `fine_types` VALUES ('25', 'Beildigung an Zivilist', '75', '1');
-INSERT INTO `fine_types` VALUES ('26', 'Polizist geringschätzen', '110', '1');
-INSERT INTO `fine_types` VALUES ('27', 'verbale Bedrohung an Zivilist', '90', '1');
-INSERT INTO `fine_types` VALUES ('28', 'verbale Bedrohung an Polizist', '150', '1');
-INSERT INTO `fine_types` VALUES ('29', 'Illegale Demonstration', '250', '1');
-INSERT INTO `fine_types` VALUES ('30', 'versuchte Bestechung', '1500', '1');
-INSERT INTO `fine_types` VALUES ('31', 'Mit Messer in der Stadt bewaffnet', '120', '2');
-INSERT INTO `fine_types` VALUES ('32', 'Mit tötlicher Waffe bewaffnet', '300', '2');
-INSERT INTO `fine_types` VALUES ('33', 'Unbefugter Besitz einer Waffe (Standard-Lizenz)', '600', '2');
-INSERT INTO `fine_types` VALUES ('34', 'Illegale Waffe', '700', '2');
-INSERT INTO `fine_types` VALUES ('35', 'Einbruch/Aufbruch', '300', '2');
-INSERT INTO `fine_types` VALUES ('36', 'Autodiebstahl', '1800', '2');
-INSERT INTO `fine_types` VALUES ('37', 'Drogenverkauf', '1500', '2');
-INSERT INTO `fine_types` VALUES ('38', 'Drogen herstellen', '1500', '2');
-INSERT INTO `fine_types` VALUES ('39', 'Drogenbesitz', '650', '2');
-INSERT INTO `fine_types` VALUES ('40', 'Zivile Geisel genommen', '1500', '2');
-INSERT INTO `fine_types` VALUES ('41', 'Geiselnahme', '2000', '2');
-INSERT INTO `fine_types` VALUES ('42', 'Waghalsiges Lenken', '650', '2');
-INSERT INTO `fine_types` VALUES ('43', 'Ladenraub', '650', '2');
-INSERT INTO `fine_types` VALUES ('44', 'Bankraub', '1500', '2');
-INSERT INTO `fine_types` VALUES ('45', 'Schießen auf Zivilisten', '2000', '3');
-INSERT INTO `fine_types` VALUES ('46', 'Schießen auf Beamten', '2500', '3');
-INSERT INTO `fine_types` VALUES ('47', 'versuchterMord an Zivilisten', '3000', '3');
-INSERT INTO `fine_types` VALUES ('48', 'versuchter Mord an einem Beamten', '5000', '3');
-INSERT INTO `fine_types` VALUES ('49', 'Mord an Zivilisten', '10000', '3');
-INSERT INTO `fine_types` VALUES ('50', 'Mord an Beamten', '30000', '3');
-INSERT INTO `fine_types` VALUES ('51', 'versehentlicher Mord', '1800', '3');
-INSERT INTO `fine_types` VALUES ('52', 'Firmenbetrug', '2000', '2');
-;
+INSERT INTO `fine_types` (`id`, `label`, `amount`, `category`) VALUES
+    (NULL, 'Missbrauch der Hupe', 300, 0),
+    (NULL, 'Illegales Überqueren einer durchgehenden Linie', 400, 0),
+    (NULL, 'Fahren auf der falschen Straßenseite', 2500, 0),
+    (NULL, 'Illegale Kehrtwende', 2500, 0),
+    (NULL, 'Fahren abseits befestigter Straßen', 1700, 0),
+    (NULL, 'Missachtung der Sicherheitsrichtlinien', 300, 0),
+    (NULL, 'Illegales Anhalten eines Fahrzeugs', 1500, 0),
+    (NULL, 'Falschparken', 700, 0),
+    (NULL, 'Missachtung der Vorfahrt', 700, 0),
+    (NULL, 'Betrieb eines Verkehrsuntauglichen Fahrzeuges', 900, 0),
+    (NULL, 'Missachtung eines Stopschildes', 1050, 0),
+    (NULL, 'Missachtung einer roten Ampel', 1300, 0),
+    (NULL, 'Rechts überholen', 1000, 0),
+    (NULL, 'Fahren eines nicht zugelassenen Fahrzeuges', 1000, 0),
+    (NULL, 'Fahren ohne Fahrerlaubnis', 15000, 0),
+    (NULL, 'Fahrerflucht', 8000, 0),
+    (NULL, 'Geschwindigkeitsübertretung von mehr als 5 kmh', 900, 0),
+    (NULL, 'Geschwindigkeitsübertretung von mehr als 5-15 kmh', 1200, 0),
+    (NULL, 'Geschwindigkeitsübertretung von mehr als 15-30 kmh', 1800, 0),
+    (NULL, 'Geschwindigkeitsübertretung von mehr als 30 kmh', 3000, 0),
+    (NULL, 'Verkehrsbehinderung', 1100, 1),
+    (NULL, 'Öffentliche Vergiftung', 900, 1),
+    (NULL, 'Ordnungswidriges Verhalten', 900, 1),
+    (NULL, 'Behinderung der Justiz', 1300, 1),
+    (NULL, 'Beleidigungen gegenüber Zivilisten', 750, 1),
+    (NULL, 'Missachtung eines Sicherheitsorgans', 1100, 1),
+    (NULL, 'Verbale Bedrohung eines Zivilisten', 900, 1),
+    (NULL, 'Verbale Bedrohung eines Sicherheitsorgans', 1500, 1),
+    (NULL, 'Falsche Informationen bereitstellen', 2500, 1),
+    (NULL, 'Versuch der Korruption', 15000, 1),
+    (NULL, 'Eine Waffe inneralb der Stadtgrenzen schwingen', 1200, 2),
+    (NULL, 'Eine tödliche Waffe innerhalb der Stadtgrenzen schwingen', 3000, 2),
+    (NULL, 'Keine Schusswaffenlizenz', 6000, 2),
+    (NULL, 'Besitz einer illegalen Waffe', 7000, 2),
+    (NULL, 'Besitz von Einbruchwerkzeugen', 3000, 2),
+    (NULL, 'Schwerer Kraftfahrzeugdiebstahl', 18000, 2),
+    (NULL, 'Absicht, eine illegale Substanz zu verkaufen/verteilen', 15000, 2),
+    (NULL, 'Herstellung einer illegalen Substanz', 15000, 2),
+    (NULL, 'Besitz einer illegalen Substanz', 6500, 2),
+    (NULL, 'Entführung eines Zivilisten', 15000, 2),
+    (NULL, 'Entführung eines Sicherheitsorgans', 20000, 2),
+    (NULL, 'Raub', 6500, 2),
+    (NULL, 'Bewaffneter Raub', 6500, 2),
+    (NULL, 'Bewaffneter Bankraub', 15000, 2),
+    (NULL, 'Angriff auf einen Zivilisten', 20000, 3),
+    (NULL, 'Angriff auf ein Sicherheitsorgan', 25000, 3),
+    (NULL, 'Mordversuch an einem Zivilisten', 30000, 3),
+    (NULL, 'Mordversuch an einem Sicherheitsorgan', 50000, 3),
+    (NULL, 'Mord an einem Zivilisten', 100000, 3),
+    (NULL, 'Mord an einem Sicherheitsorgan', 300000, 3),
+    (NULL, 'Fahrlässige Tötung', 18000, 3),
+    (NULL, 'Betrug', 20000, 2),
+    (NULL, 'Missachtung der Priorität eines Einsatzfahrzeuges', 900, 1),
+    (NULL, 'Behinderung eines Rettungseinsatzes', 1500, 1),
+    (NULL, 'Behinderung eines Polizeieinsatzes', 1500, 1),
+    (NULL, 'Behinderung eines Feuerwehreinsatzes', 1500, 1),
+    (NULL, 'Leichte Körperverletzung', 750, 1),
+    (NULL, 'Schwere Körperverletzung', 2500, 2),
+    (NULL, 'Fahrlässige Körperverletzung', 1500, 1),
+    (NULL, 'Totschlag', 80000, 3),
+    (NULL, 'Korruption', 180000, 2),
+    (NULL, 'Amtsmissbrauch', 50000, 2),
+    (NULL, 'Unterlassene Hilfeleistung', 1500, 1),
+    (NULL, 'Unterschlagung von Öffentlichen Geldern', 160000, 2),
+    (NULL, 'Gründung und Unterhaltung einer kriminellen Organisation', 25000, 2),
+    (NULL, 'Zugehörigkeit einer kriminellen Organisation', 5000, 1),
+    (NULL, 'Benutzung einer falschen Identität', 1800, 1),
+    (NULL, 'Umweltverschmutzung', 600, 1),
+    (NULL, 'Gefährliches Verhalten im Straßenverkehr', 1400, 1),
+    (NULL, 'Tierquälerei', 600, 1);

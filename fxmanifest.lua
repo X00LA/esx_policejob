@@ -4,7 +4,7 @@ game 'gta5'
 
 description 'ESX Police Job'
 
-version '1.3.0'
+version '1.3.8'
 
 server_scripts {
 	'@mysql-async/lib/MySQL.lua',

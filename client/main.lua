@@ -425,7 +425,7 @@ function OpenIdentityCardMenu(player)
 			table.insert(elements, {label = _U('height', data.height)})
 		end
 
-		if data.drunk then
+		if Config.EnableESXOptionalneeds and data.drunk then
 			table.insert(elements, {label = _U('bac', data.drunk)})
 		end
 
